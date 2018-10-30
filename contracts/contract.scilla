@@ -63,12 +63,12 @@ transition Bid ()
   flag1 = orb in_time e;
   early = blk_leq blk auctionStart;
   match early with
-  | True =>
+ 	| True =>
       msg  = {_tag : "Main"; _recipient : _sender; _amount : Uint128 0; code : too_early_to_bid_code};
       msgs = one_msg msg;
       send msgs
-  | False =>
-    match flag1 with
+	| False =>
+  	match flag1 with
     | True => 
       msg  = {_tag : "Main"; _recipient : _sender; _amount : Uint128 0; code : late_to_bid_code};
       msgs = one_msg msg;
@@ -137,7 +137,7 @@ transition Withdraw ()
     msg  = {_tag : "Main"; _recipient : _sender; _amount : Uint128 0; code : nothing_to_withdraw_code};
     msgs = one_msg msg;
     send msgs
-  | Some v =>
+	| Some v =>
     prs1 = builtin remove prs _sender; 
     pendingReturns := prs1;
     msg  = {_tag : "Main"; _recipient : _sender; _amount : v; code : money_sent_code};
